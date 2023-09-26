@@ -14,37 +14,38 @@ locals {
   l4_ou_paths = distinct([for ou in local.safe_ous : slice(ou, 0, 5) if length(ou) > 4])
 
   # [["a"], ["b"], ["e"]] =>
-  #   {a = {name = a}, b = {name = b}, e = {name = e}}
+  #   {a = {name = "a"}, b = {name = "b"}, e = {name = "e"}}
   l0_ous = { for ou_path in local.l0_ou_paths :
     join("/", ou_path) => {
       name = element(ou_path, length(ou_path) - 1)
     }
   }
   # [["b", "c"], ["b", "d"], ["e", "f"]] =>
-  #   {b/c = {name = c, parent_name = b}, b/d = {name = d, parent_name = b}, e/f = {name = f, parent_name = e}}
+  #   {b/c = {name = "c", parent_name = "b"}, b/d = {name = "d", parent_name = "b"}, e/f = {name = "f", parent_name = "e"}}
   l1_ous = { for ou_path in local.l1_ou_paths :
     join("/", ou_path) => {
-      name        = element(ou_path, length(ou_path) - 1)
-      parent_name = element(ou_path, length(ou_path) - 2)
+      name = element(ou_path, length(ou_path) - 1)
+      # parent_name = element(ou_path, length(ou_path) - 2)
+      parent_name = join("/", slice(ou_path, 0, length(ou_path) - 1))
     }
   }
-  # [["e", "f", "g"]] => {e/f/g = {name = g, parent_name = f}}
+  # [["e", "f", "g"]] => {e/f/g = {name = "g", parent_name = "e/f"}}
   l2_ous = { for ou_path in local.l2_ou_paths :
     join("/", ou_path) => {
       name        = element(ou_path, length(ou_path) - 1)
-      parent_name = element(ou_path, length(ou_path) - 2)
+      parent_name = join("/", slice(ou_path, 0, length(ou_path) - 1))
     }
   }
   l3_ous = { for ou_path in local.l3_ou_paths :
     join("/", ou_path) => {
       name        = element(ou_path, length(ou_path) - 1)
-      parent_name = element(ou_path, length(ou_path) - 2)
+      parent_name = join("/", slice(ou_path, 0, length(ou_path) - 1))
     }
   }
   l4_ous = { for ou_path in local.l4_ou_paths :
     join("/", ou_path) => {
       name        = element(ou_path, length(ou_path) - 1)
-      parent_name = element(ou_path, length(ou_path) - 2)
+      parent_name = join("/", slice(ou_path, 0, length(ou_path) - 1))
     }
   }
 
