@@ -15,3 +15,15 @@ variable "ous" {
   type        = list(string)
   default     = []
 }
+
+variable "accounts" {
+  description = "Map of AWS account definitions - keys are account names, values are aws_organizations_account arguments. Additionally supported keys: `ou_path`."
+  type        = map(any)
+  default     = {}
+}
+
+variable "organization_account_access_role_name_default" {
+  description = "Defualt administrator role name to be created in accounts, assumable by the management account. This can be overridden in the `accounts` variable."
+  type        = string
+  default     = "OrganizationAccountAccessRole"
+}

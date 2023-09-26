@@ -49,5 +49,5 @@ ous = {
 ## Roadmap
 
 1. [Manage AWS accounts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html)
+1. [Deploy organization policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html)
 1. [Enable AWS services organization integrations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
-1. [Enable and deploy organization policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html)
