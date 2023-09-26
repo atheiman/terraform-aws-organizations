@@ -2,11 +2,15 @@
 
 Terraform module to configure [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html).
 
+GitHub: https://github.com/atheiman/terraform-aws-organizations
+Terraform Registry: https://registry.terraform.io/modules/atheiman/organizations/aws/latest
+
 ## Usage
 
 ```hcl
 module "org" {
-  source = "terraform-aws-organizations"
+  source  = "atheiman/organizations/aws"
+
   ous = [
     "core",
     "workloads/nonprod",
